@@ -17,7 +17,7 @@ func main() {
 
 	// Define API routes
 	api := r.PathPrefix("/api/v1").Subrouter()
-	
+
 	// Transaction endpoints
 	api.HandleFunc("/transactions", handlers.GetAllTransactions).Methods("GET")
 	api.HandleFunc("/transactions/category", handlers.GetTransactionsByCategory).Methods("GET")
@@ -44,6 +44,6 @@ func main() {
 	fmt.Println("  GET /api/v1/transactions/spending - Get total spending by category")
 	fmt.Println("  GET /api/v1/summary - Get spending summary as simple JSON object")
 	fmt.Println("  GET /health - Health check")
-	
+
 	log.Fatal(http.ListenAndServe(port, r))
 }
