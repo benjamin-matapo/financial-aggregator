@@ -2,7 +2,9 @@ import React, { useState, useEffect } from 'react';
 import TransactionsTable from './components/TransactionsTable';
 import SpendingChart from './components/SpendingChart';
 
-const API_BASE_URL = 'http://localhost:8080/api/v1';
+const API_BASE_URL = process.env.REACT_APP_API_URL 
+  ? `${process.env.REACT_APP_API_URL}/api/v1` 
+  : 'http://localhost:8080/api/v1';
 
 function App() {
   const [transactions, setTransactions] = useState([]);

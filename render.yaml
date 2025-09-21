@@ -1,0 +1,23 @@
+services:
+  # Go API Backend
+  - type: web
+    name: financial-aggregator-api
+    env: go
+    plan: free
+    buildCommand: go mod download && go build -o main .
+    startCommand: ./main
+    envVars:
+      - key: PORT
+        value: 10000
+    healthCheckPath: /health
+
+  # React Frontend
+  - type: web
+    name: financial-dashboard
+    env: static
+    plan: free
+    buildCommand: cd react-app && npm install && npm run build
+    staticPublishPath: react-app/build
+    envVars:
+      - key: REACT_APP_API_URL
+        value: https://financial-aggregator-api.onrender.com

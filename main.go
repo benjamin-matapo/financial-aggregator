@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"log"
 	"net/http"
+	"os"
 
 	"financial-aggregator-api/handlers"
 
@@ -30,7 +31,11 @@ func main() {
 	}).Methods("GET")
 
 	// Start the server
-	port := ":8080"
+	port := os.Getenv("PORT")
+	if port == "" {
+		port = "8080"
+	}
+	port = ":" + port
 	fmt.Printf("Server starting on port %s\n", port)
 	fmt.Println("Available endpoints:")
 	fmt.Println("  GET /api/v1/transactions - Get all transactions")

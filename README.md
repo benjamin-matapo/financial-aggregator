@@ -1,95 +1,146 @@
 # Financial Aggregator API
 
-A simple Go REST API for managing financial transactions with category-based filtering and spending analysis.
+A full-stack financial dashboard application built with Go and React, designed to track and visualize spending patterns and transactions.
 
-## Features
+## 🚀 Features
 
-- Get all transactions
-- Filter transactions by category
-- Calculate total spending by category
-- In-memory data storage (no database required)
+- **Go REST API** with comprehensive transaction endpoints
+- **React Dashboard** with interactive charts and data tables
+- **Real-time Data** visualization using Recharts
+- **Responsive Design** that works on desktop and mobile
+- **Docker Support** for easy deployment
+- **Render Ready** with configuration files included
 
-## Project Structure
+## 📊 API Endpoints
 
-```
-financial-aggregator-api/
-├── main.go                 # Main application entry point
-├── go.mod                  # Go module file
-├── handlers/
-│   └── transactions.go     # HTTP handlers for transaction endpoints
-├── models/
-│   └── transaction.go      # Data models
-└── README.md              # This file
-```
+- `GET /api/v1/transactions` - Get all transactions
+- `GET /api/v1/transactions?category=<category>` - Filter transactions by category
+- `GET /api/v1/transactions/spending` - Get total spending by category
+- `GET /api/v1/summary` - Get spending summary as JSON
+- `GET /health` - Health check endpoint
 
-## Getting Started
+## 🛠️ Tech Stack
 
-1. **Install dependencies:**
+### Backend
+- **Go 1.21** - High-performance server
+- **Gorilla Mux** - HTTP router and URL matcher
+- **RESTful API** design
+
+### Frontend
+- **React 18** - Modern UI library
+- **Recharts** - Data visualization
+- **CSS3** - Responsive styling
+
+## 🚀 Quick Start
+
+### Prerequisites
+- Go 1.21 or later
+- Node.js 16 or later
+- npm or yarn
+
+### Local Development
+
+1. **Clone the repository**
    ```bash
-   go mod tidy
+   git clone https://github.com/benjamin-matapo/financial-aggregator.git
+   cd financial-aggregator
    ```
 
-2. **Run the application:**
+2. **Start the Go API server**
    ```bash
+   go mod download
    go run main.go
    ```
+   The API will be available at `http://localhost:8080`
 
-3. **The API will be available at:** `http://localhost:8080`
+3. **Start the React frontend**
+   ```bash
+   cd react-app
+   npm install
+   npm start
+   ```
+   The dashboard will be available at `http://localhost:3000`
 
-## API Endpoints
+### Using Docker
 
-### Get All Transactions
-```
-GET /api/v1/transactions
-```
-Returns all transactions in the system.
-
-### Get Transactions by Category
-```
-GET /api/v1/transactions/category?category=<category_name>
-```
-Returns transactions filtered by the specified category.
-
-**Example:**
 ```bash
-curl "http://localhost:8080/api/v1/transactions/category?category=Food"
+# Build and run the API
+docker build -t financial-aggregator-api .
+docker run -p 8080:8080 financial-aggregator-api
 ```
 
-### Get Total Spending by Category
-```
-GET /api/v1/transactions/spending
-```
-Returns total spending grouped by category (only counts expenses, not income).
+## 🌐 Deployment on Render
 
-### Health Check
-```
-GET /health
-```
-Returns the API status.
+This project is configured for easy deployment on Render:
 
-## Sample Data
+1. **Connect your GitHub repository** to Render
+2. **Deploy the Go API** as a Web Service
+3. **Deploy the React app** as a Static Site
+4. **Set environment variables**:
+   - `REACT_APP_API_URL`: Your deployed API URL
 
-The API comes with pre-loaded sample transactions including:
-- Food expenses (groceries, coffee, restaurants)
-- Transportation (gas, Uber)
-- Entertainment (movies)
-- Health (gym membership)
+### Render Configuration
+
+The project includes:
+- `render.yaml` - Render service configuration
+- `Dockerfile` - Container configuration
+- Environment variable support for production URLs
+
+## 📁 Project Structure
+
+```
+financial-aggregator/
+├── handlers/           # Go HTTP handlers
+├── models/            # Go data models
+├── react-app/         # React frontend
+│   ├── src/
+│   │   ├── components/
+│   │   └── App.js
+│   └── package.json
+├── main.go           # Go server entry point
+├── go.mod           # Go dependencies
+├── Dockerfile       # Docker configuration
+├── render.yaml      # Render deployment config
+└── README.md
+```
+
+## 🔧 Configuration
+
+### Environment Variables
+
+- `PORT` - Server port (default: 8080)
+- `REACT_APP_API_URL` - API URL for React app (production)
+
+### API Data
+
+The API includes sample financial data for demonstration. In a production environment, you would connect to a real database.
+
+## 📈 Sample Data
+
+The application comes with sample transactions across categories:
+- Food & Dining
+- Transportation
 - Shopping
-- Income (salary, freelance)
+- Entertainment
+- Health & Fitness
 
-## Example Usage
+## 🤝 Contributing
 
-```bash
-# Get all transactions
-curl http://localhost:8080/api/v1/transactions
+1. Fork the repository
+2. Create a feature branch
+3. Make your changes
+4. Submit a pull request
 
-# Get food transactions
-curl "http://localhost:8080/api/v1/transactions/category?category=Food"
+## 📄 License
 
-# Get spending summary by category
-curl http://localhost:8080/api/v1/transactions/spending
-```
+This project is open source and available under the [MIT License](LICENSE).
 
-## Dependencies
+## 🔗 Links
 
-- [Gorilla Mux](https://github.com/gorilla/mux) - HTTP router and URL matcher
+- [Live Demo](https://financial-dashboard.onrender.com) (when deployed)
+- [API Documentation](https://financial-aggregator-api.onrender.com/health) (when deployed)
+- [GitHub Repository](https://github.com/benjamin-matapo/financial-aggregator)
+
+---
+
+Built with ❤️ using Go and React
