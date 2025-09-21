@@ -1,0 +1,12 @@
+{
+  "name": "financial-aggregator",
+  "version": "1.0.0",
+  "description": "Financial Aggregator API with Go backend and React frontend",
+  "scripts": {
+    "build": "cd react-app && npm install && npm run build",
+    "start": "go run main.go"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}

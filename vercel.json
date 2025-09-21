@@ -1,0 +1,30 @@
+{
+  "version": 2,
+  "builds": [
+    {
+      "src": "main.go",
+      "use": "@vercel/go"
+    },
+    {
+      "src": "react-app/package.json",
+      "use": "@vercel/static-build",
+      "config": {
+        "distDir": "build"
+      }
+    }
+  ],
+  "routes": [
+    {
+      "src": "/api/(.*)",
+      "dest": "/main.go"
+    },
+    {
+      "src": "/health",
+      "dest": "/main.go"
+    },
+    {
+      "src": "/(.*)",
+      "dest": "/react-app/$1"
+    }
+  ]
+}

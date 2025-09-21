@@ -4,6 +4,8 @@ import SpendingChart from './components/SpendingChart';
 
 const API_BASE_URL = process.env.REACT_APP_API_URL 
   ? `${process.env.REACT_APP_API_URL}/api/v1` 
+  : process.env.NODE_ENV === 'production'
+  ? '/api/v1'
   : 'http://localhost:8080/api/v1';
 
 function App() {
